@@ -15,7 +15,7 @@ public class Main {
     }
     array = new String[y][x];
     try {
-      BufferedReader reader = new BufferedReader(new FileReader("test.txt"));
+      BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
       y = 0;
       String line;
       while ((line = reader.readLine()) != null) {
@@ -37,7 +37,7 @@ public class Main {
         if (j < array[i].length && array[i][j].equals("X")) {
           if (j + 1 < array[i].length && array[i][j + 1].equals("M")) {
             if (j + 2 < array[i].length && array[i][j + 2].equals("A")) {
-              if (j +  3 < array[i].length && array[i][j + 3].equals("S")) {
+              if (j <= array[i].length - 4 && array[i][j + 3].equals("S")) {
                 count++;
               }
             }
@@ -51,9 +51,9 @@ public class Main {
     for (int i = 0; i < array.length; i++) {
       for (int j = array[i].length - 1; j > 0; j--) {
         if (j > 0 && array[i][j].equals("X")) {
-          if (j - 1 > 0 && array[i][j - 1].equals("M")) {
-            if (j - 2 > 0 && array[i][j - 2].equals("A")) {
-              if (j - 3 > 0 && array[i][j - 3].equals("S")) {
+          if (j - 1 >= 0 && array[i][j - 1].equals("M")) {
+            if (j - 2 >= 0 && array[i][j - 2].equals("A")) {
+              if (j - 3 >= 0 && array[i][j - 3].equals("S")) {
                 count++;
               }
             }
@@ -146,7 +146,8 @@ public class Main {
     //DIAGONAL - VON UNTEN LINKS NACH OBEN RECHTS
     for (int i = array.length - 1; i > 0; i--) {
       for (int j = 0; j < array.length; j++) {
-        if (i >= array.length - 3  && j + 3 < array.length - 1 && array[i][j].equals("X")) {
+        if (i >= 3  && j + 3 < array.length && array[i][j].equals("X")) {
+          System.out.println("i: " + i);
           if (array[i - 1][j + 1].equals("M")) {
             if (array[i - 2][j + 2].equals("A")) {
               if (array[i - 3][j + 3].equals("S")) {
